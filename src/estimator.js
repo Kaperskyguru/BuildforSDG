@@ -64,7 +64,7 @@ const covid19ImpactEstimator = (data) => {
     * data.region.avgDailyIncomeInUSD
     * duration);
 
-  //no-console
+  // no-console
   console.log(impact, 'here');
 
   return {
