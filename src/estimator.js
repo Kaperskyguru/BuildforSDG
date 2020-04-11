@@ -51,18 +51,16 @@ const covid19ImpactEstimator = (data) => {
 
   const duration = checkDuration(data.periodType, data.timeToElapse);
 
-  impact.dollarsInFlight = Math.floor(
-    impact.infectionsByRequestedTime *
-    data.region.avgDailyIncomePopulation *
-    data.region.avgDailyIncomeInUSD *
-    duration
+  impact.dollarsInFlight = Math.floor( impact.infectionsByRequestedTime 
+    * data.region.avgDailyIncomePopulation 
+    * data.region.avgDailyIncomeInUSD 
+    * duration
   );
 
-  severeImpact.dollarsInFlight = Math.floor(
-    severeImpact.infectionsByRequestedTime *
-    data.region.avgDailyIncomePopulation *
-    data.region.avgDailyIncomeInUSD *
-    duration
+  severeImpact.dollarsInFlight = Math.floor( severeImpact.infectionsByRequestedTime
+    * data.region.avgDailyIncomePopulation 
+    * data.region.avgDailyIncomeInUSD 
+    * duration
   );
 
   return {
