@@ -19,7 +19,7 @@ const covid19ImpactEstimator = (data) => {
 
   impact.casesForVentilatorsByRequestedTime = Math.floor(
     impact.infectionsByRequestedTime * 0.02
-  )
+  );
 
   severeImpact.currentlyInfected = data.reportedCases * 50;
 
@@ -39,7 +39,17 @@ const covid19ImpactEstimator = (data) => {
     severeImpact.infectionsByRequestedTime * 0.02
   );
 
-  const duration = checkDuration(data.periodType, data.timeToElapse)
+  const checkDuration = (period, duration) => {
+    let result = 2 ** Math.floor(duration / 3);
+    if(period === 'weeks') {
+        result = 2 ** Math.floor((duration * 7) / 3);
+    } else if(period === 'months') {
+        result = 3 ** Math.floor((duration * 30) / 3)
+    }
+    return result;
+  }
+
+  const duration = checkDuration(data.periodType, data.timeToElapse);
 
   impact.dollarsInFlight = Math.floor(
     impact.infectionsByRequestedTime *
@@ -53,17 +63,10 @@ const covid19ImpactEstimator = (data) => {
     data.region.avgDailyIncomePopulation *
     data.region.avgDailyIncomeInUSD *
     duration
-  )
+  );
 
-  const checkDuration = function(period, duration){
-    let result = 2 ** Math.floor(duration / 3);
-    if(period == 'weeks') {
-        result = 2 ** Math.floor((duration * 7) / 3);
-    } else if(period == 'months') {
-        result = 3 ** Math.floor((duration * 30) / 3)
-    }
-    return result
-  }
+
+
   return {
     data,
     impact,
