@@ -41,13 +41,13 @@ const covid19ImpactEstimator = (data) => {
 
   const checkDuration = (period, duration) => {
     let result = 2 ** Math.floor(duration / 3);
-    if(period === 'weeks') {
-        result = 2 ** Math.floor((duration * 7) / 3);
-    } else if(period === 'months') {
-        result = 3 ** Math.floor((duration * 30) / 3)
+    if (period === 'weeks') {
+      result = 2 ** Math.floor((duration * 7) / 3);
+    } else if (period === 'months') {
+      result = 3 ** Math.floor((duration * 30) / 3);
     }
     return result;
-  }
+  };
 
   const duration = checkDuration(data.periodType, data.timeToElapse);
 
@@ -64,8 +64,6 @@ const covid19ImpactEstimator = (data) => {
     data.region.avgDailyIncomeInUSD *
     duration
   );
-
-
 
   return {
     data,
